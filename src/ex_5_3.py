@@ -1,19 +1,33 @@
 """ ex_5_3.py
 This module contains an entry point that:
 
-- creates a CLi that accepts an input file of data to be processed
-- shifts and scales the data to a mean of 0 and a standard deviation 1
-- writes the file to the output file argument
+- creates a CLI that accepts an input file of data to be processed
+- shifts and scales the data to a mean of 0 and a standard deviation of 1
+- writes the processed data to the output file argument
 """
 import numpy as np
 from argparse import ArgumentParser
 
-if __name__ == "__main__":
-    # Create your argument parser object here.
-    # Collect the filename arguments from the command line
-    # Rewrite your 5_3 logic here so that it utilizes the arguments passed from the command line.
+def main(infile, outfile):
+    # Load data from the input file into a numpy array
+    data = np.loadtxt(infile, delimiter=',')
 
-    # Tests will run your command using a system call.
-    # To test your program with arguments, run it from the command line
-    # (see README.md for more details)
-    pass
+    # Shift and scale the data to have a mean of 0 and standard deviation of 1
+    processed_data = (data - np.mean(data, axis=0)) / np.std(data, axis=0)
+
+    # Save the processed data to the output file
+    np.savetxt(outfile, processed_data, delimiter=',')
+
+if __name__ == "__main__":
+    # Create an argument parser object
+    parser = ArgumentParser(description="This program processes data by shifting and scaling to a mean of 0 and a standard deviation of 1.")
+
+    # Add positional arguments for input and output filenames
+    parser.add_argument("infile", help="Input filename for the data to be processed.")
+    parser.add_argument("outfile", help="Output filename for the processed data.")
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Call the main function with the provided filenames
+    main(args.infile, args.outfile)
