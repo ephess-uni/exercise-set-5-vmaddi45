@@ -14,13 +14,21 @@ except ImportError:
     from util import get_repository_root
 
 
-if __name__ == "__main__":
-
+def main():
     # Use these predefined input / output files
     root_dir = get_repository_root()
     INFILE = root_dir / "data" / "ex_5_2-data.csv"
     OUTFILE = root_dir / "outputs" / "ex_5_2-processed.csv"
 
-    # Complete the data processing steps using numpy here.
+    # Load data from the input file into a numpy array
+    data = np.loadtxt(INFILE, delimiter=',')
 
-    # Save the output to OUTFILE using numpy routines.
+    # Shift and scale the data to have a mean of 0 and standard deviation of 1
+    processed_data = (data - np.mean(data, axis=0)) / np.std(data, axis=0)
+
+    # Save the processed data to OUTFILE using numpy routines
+    np.savetxt(OUTFILE, processed_data, delimiter=',')
+
+
+if __name__ == "__main__":
+    main()
