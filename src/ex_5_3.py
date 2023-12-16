@@ -1,6 +1,5 @@
-""" ex_5_3.py
-This module contains an entry point that:
-
+# ex_5_3.py
+"""This module contains an entry point that:
 - creates a CLI that accepts an input file of data to be processed
 - shifts and scales the data to a mean of 0 and a standard deviation of 1
 - writes the processed data to the output file argument
@@ -20,7 +19,7 @@ def main(infile, outfile):
 
 if __name__ == "__main__":
     # Create an argument parser object
-    parser = ArgumentParser(description="This program processes data by shifting and scaling to a mean of 0 and a standard deviation of 1.")
+    parser = ArgumentParser(description="This program applies a standard scale transform to the data in infile, shifting and scaling to a mean of 0 and a standard deviation of 1, and writes it to outfile.")
 
     # Add positional arguments for input and output filenames
     parser.add_argument("infile", help="Input filename for the data to be processed.")
