@@ -2,12 +2,16 @@
 
 def line_count(infile):
     try:
+        
         with open(infile, 'r') as file:
+            
             lines = file.readlines()
 
+           
             num_lines = len(lines)
 
-            print(f'The number of lines in {infile} is: {num_lines}')
+            
+            print(num_lines)
     except FileNotFoundError:
         print(f"Error: The file '{infile}' was not found.")
     except Exception as e:
