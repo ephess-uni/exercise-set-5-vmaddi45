@@ -2,21 +2,16 @@
 
 def line_count(infile):
     try:
-        # Open the file in read mode
         with open(infile, 'r') as file:
-            # Read all lines into a list
             lines = file.readlines()
 
-            # Count the number of lines
             num_lines = len(lines)
 
-            # Print the result
             print(f'The number of lines in {infile} is: {num_lines}')
     except FileNotFoundError:
         print(f"Error: The file '{infile}' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
-
 
 if __name__ == "__main__":
     # get the utility function for path discovery
